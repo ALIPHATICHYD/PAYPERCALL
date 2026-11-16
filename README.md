@@ -71,7 +71,7 @@ Gateway ──200 OK + data──▶ Agent        Seller wallet ◀── USDC
 ## Team
 
 - **Fuad Adegoke**: team lead, full-stack developer ([@ALIPHATICHYD](https://github.com/ALIPHATICHYD))
-- **Shobiye AbdulAzeem**: team member
+- **Shobiye AbdulAzeem**: team member ([@Abdulazeem-code](https://github.com/Abdulazeem-code))
 
 ## Repository layout
 
