@@ -1,0 +1,18 @@
+[
+  {
+    "id": "sample-market-prices",
+    "name": "Sample market prices",
+    "description": "Demo listing. Returns sample (not real) staple-food prices for a city. Replace with a real API before going live.",
+    "upstream": "http://localhost:4100/market-prices",
+    "price": "$0.005",
+    "category": "data"
+  },
+  {
+    "id": "sample-fx",
+    "name": "Sample naira FX feed",
+    "description": "Demo listing. Returns sample (not real) naira exchange rates. Replace with a real API before going live.",
+    "upstream": "http://localhost:4100/fx/ngn",
+    "price": "$0.001",
+    "category": "finance"
+  }
+]

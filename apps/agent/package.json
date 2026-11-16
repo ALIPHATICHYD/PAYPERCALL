@@ -1,0 +1,15 @@
+{
+  "name": "@paypercall/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Demo AI-agent client: calls a paid PayPerCall route and pays with testnet USDC via x402.",
+  "scripts": {
+    "pay": "node --env-file-if-exists=../../.env src/pay.ts"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^17.0.0",
+    "@x402/fetch": "2.27.0",
+    "@x402/stellar": "2.27.0"
+  }
+}

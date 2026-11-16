@@ -1,0 +1,19 @@
+{
+  "name": "paypercall",
+  "private": true,
+  "description": "Put a price on any API and get paid in USDC by AI agents, per request, on Stellar (x402).",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev:demo-api": "npm run dev -w @paypercall/demo-api",
+    "dev:gateway": "npm run dev -w @paypercall/gateway",
+    "pay": "npm run pay -w @paypercall/agent --",
+    "test": "node --test apps/*/test/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}
