@@ -4,7 +4,7 @@
 
 PayPerCall lets developers in Africa sell access to their APIs, datasets and AI tools to anyone in the world, including AI agents, without card billing, a foreign bank account or API keys. Each call is paid for in USDC, a cent or less, and the money settles straight into the seller's own Stellar wallet within seconds.
 
-> Built for the **Stellar Buildathon 2026** (Nigeria & Ghana). 🚧 Work in progress.
+> Built for the **Stellar Buildathon 2026** (Nigeria & Ghana). Work in progress.
 
 ---
 
@@ -61,12 +61,12 @@ Gateway ──200 OK + data──▶ Agent        Seller wallet ◀── USDC
 
 | Milestone | Status |
 |---|---|
-| Idea, scope and UI mockups | ✅ Done |
-| x402 gateway with test payments | ⏳ In progress |
-| Soroban endpoint registry | ⏳ Planned |
-| Seller onboarding and dashboard | ⏳ Planned |
-| MCP listing and demo APIs | ⏳ Planned |
-| Builder Showcase demo | ⏳ Planned |
+| Idea, scope and UI mockups | Done |
+| x402 gateway with test payments | In progress |
+| Soroban endpoint registry | Planned |
+| Seller onboarding and dashboard | Planned |
+| MCP listing and demo APIs | Planned |
+| Builder Showcase demo | Planned |
 
 ## Team
 
