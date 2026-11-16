@@ -1,0 +1,11 @@
+{
+  "name": "@paypercall/demo-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A tiny stand-in for a seller's real API, returning clearly-marked sample data.",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../../.env --watch src/server.ts",
+    "start": "node --env-file-if-exists=../../.env src/server.ts"
+  }
+}

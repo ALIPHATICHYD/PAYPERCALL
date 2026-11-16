@@ -1,0 +1,21 @@
+{
+  "name": "@paypercall/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "x402 gateway: puts a per-call USDC price in front of any API and settles on Stellar.",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../../.env --watch src/server.ts",
+    "start": "node --env-file-if-exists=../../.env src/server.ts"
+  },
+  "dependencies": {
+    "@x402/core": "2.27.0",
+    "@x402/express": "2.27.0",
+    "@x402/stellar": "2.27.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.15.0"
+  }
+}
