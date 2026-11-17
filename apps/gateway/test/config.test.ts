@@ -8,7 +8,8 @@ test('defaults to testnet and the OpenZeppelin facilitator', () => {
   assert.equal(c.port, 4021);
   assert.equal(c.facilitatorUrl, 'https://channels.openzeppelin.com/x402/testnet');
   assert.equal(c.facilitatorApiKey, undefined);
-  assert.match(c.listingsFile, /apps\/gateway\/listings\.json$/);
+  // path.resolve uses "\" on Windows and "/" elsewhere.
+  assert.match(c.listingsFile, /apps[\\/]gateway[\\/]listings\.json$/);
 });
 
 test('rejects non-Stellar networks and bad ports', () => {

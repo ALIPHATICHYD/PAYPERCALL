@@ -63,7 +63,7 @@ Gateway ──200 OK + data──▶ Agent        Seller wallet ◀── USDC
 |---|---|
 | Idea, scope and UI mockups | Done |
 | x402 gateway with test payments | Built, needs a live testnet run |
-| Soroban endpoint registry | Planned |
+| Soroban endpoint registry | Built and tested, not yet deployed |
 | Seller onboarding and dashboard | Planned |
 | MCP listing and demo APIs | Planned |
 | Builder Showcase demo | Planned |
@@ -80,6 +80,7 @@ Gateway ──200 OK + data──▶ Agent        Seller wallet ◀── USDC
 | `apps/gateway` | The x402 gateway. Reads `listings.json`, answers `402` with each listing's price, forwards paid requests to the seller's API, and tracks calls and settlements. |
 | `apps/agent` | A demo AI-agent client that pays for one call with testnet USDC. |
 | `apps/demo-api` | A stand-in for a seller's API that returns clearly-marked sample data. |
+| `contracts/registry` | The Soroban endpoint registry: an on-chain list of paid APIs (price, payout address, description) that agents can read directly. |
 
 ## Getting started (testnet)
 
@@ -129,4 +130,37 @@ Add an entry to `apps/gateway/listings.json`:
 
 ```bash
 npm test
+```
+
+## Endpoint registry (Soroban)
+
+`contracts/registry` is a permissionless Soroban contract that lists paid APIs on-chain, so agents can find them without a central marketplace.
+
+- Anyone can `register` a listing; the signing address becomes its **seller**.
+- Only the seller can `update`, pause/resume (`set_active`) or `remove` it.
+- An **admin** (set at deploy) can `admin_remove` abusive listings, `set_admin` and `upgrade` the contract.
+- Reads: `get`, `count`, `list(start, limit)` (max 50 per page) and `listings_of(seller)`.
+- Events: `registered`, `updated` and `removed`, for indexers and the dashboard.
+
+Each listing stores `id`, `seller`, `pay_to`, `name`, `description`, `endpoint`, `price`, `category`, `active` and the ledgers it was created and last updated in. `price` is in USDC base units (7 decimals, so `$0.005` = `50000`). `endpoint` is the public paid URL (the gateway's `/v1/call/<id>`). The seller's real upstream URL is never stored on-chain. Ids follow the same rule as `listings.json`. A seller can hold up to 50 listings.
+
+Requires Rust with the `wasm32v1-none` target and the [Stellar CLI](https://developers.stellar.org/docs/tools/cli).
+
+```bash
+npm run contract:test     # cargo test
+npm run contract:build    # target/wasm32v1-none/release/paypercall_registry.wasm
+```
+
+Deploy to testnet and register a listing:
+
+```bash
+stellar keys generate deployer --network testnet --fund
+stellar contract deploy --wasm target/wasm32v1-none/release/paypercall_registry.wasm \
+  --source deployer --network testnet --alias registry -- --admin deployer
+
+stellar contract invoke --id registry --source deployer --network testnet -- register \
+  --seller deployer --id sample-fx \
+  --input '{"name":"Sample naira FX feed","description":"Sample naira exchange rates.","endpoint":"http://localhost:4021/v1/call/sample-fx","price":"10000","pay_to":"G...","category":"finance"}'
+
+stellar contract invoke --id registry --network testnet -- list --start 0 --limit 10
 ```
