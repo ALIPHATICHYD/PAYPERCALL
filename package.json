@@ -14,6 +14,8 @@
     "dev:gateway": "npm run dev -w @paypercall/gateway",
     "pay": "npm run pay -w @paypercall/agent --",
     "test": "node --test apps/*/test/*.test.ts",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "contract:build": "stellar contract build",
+    "contract:test": "cargo test"
   }
 }
